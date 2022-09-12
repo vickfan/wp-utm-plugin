@@ -95,6 +95,7 @@
       add_option($type, array($data));
     } else {
       // update option if exist
+      // TODO: need to check duplicates
       $saved_options[] = $data;
       update_option($type, $saved_options);
     }
