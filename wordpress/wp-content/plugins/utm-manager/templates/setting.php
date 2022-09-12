@@ -12,7 +12,16 @@
 <h2>UTM Sources</h2>
 <div id='utm-sources-table'>
   <div class='utm-sources'>
-    <div class='utm-source'>Google</div>
+    <?php
+      $utm_sources = get_option('utm_source');
+      foreach ($utm_sources as $source) {
+        ?>
+          <div class='utm-source'>
+            <?php echo $source; ?>
+          </div>
+        <?php
+      }
+    ?>
   </div>
 </div>
 <input id='new-utm-source'/>
@@ -51,7 +60,8 @@
 
       let ajaxData = {
         action: 'save_utm_options',
-        type: 'source'
+        type: 'utm_source',
+        data: source.value
       }
 
       jQuery.post(ajaxurl, ajaxData, function(response) {

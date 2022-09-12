@@ -84,8 +84,21 @@
     global $wpdb;
 
     $type = $_POST['type'];
+    $data = $_POST['data'];
 
-    echo $type;
+    // try to get option first
+    $saved_options = get_option($type);
+
+    // set options
+    if(empty($saved_options)) {
+      // add option if empty 
+      add_option($type, array($data));
+    } else {
+      // update option if exist
+      $saved_options[] = $data;
+      update_option($type, $saved_options);
+    }
+    echo $saved_options;
 
     wp_die();
   }

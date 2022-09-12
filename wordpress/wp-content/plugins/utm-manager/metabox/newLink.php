@@ -3,10 +3,16 @@
   <br/>
   <input type='text' list='utmSourceList' placeholder='Enter UTM Source Here' id='utm-source'/>
   <datalist id='utmSourceList'>
-    <option>Facebook</option>
-    <option>Twitter</option>
-    <option>Google</option>
-    <option>NewsLetter</option>
+    <?php
+      $utm_sources = get_option('utm_source');
+      foreach ($utm_sources as $source) {
+        ?>
+          <option>
+            <?php echo $source; ?>
+          </option>
+        <?php
+      }
+    ?>
   </datalist>
   <br/>
   <label>UTM Medium</label>
